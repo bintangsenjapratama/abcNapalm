@@ -1,8 +1,17 @@
 import bpy
 import os
 
-filePath = bpy.path.basename(bpy.context.blend_data.filepath)
-sceneName = os.path.splitext(filePath)[0]
+baseFilePath = bpy.path.basename(bpy.context.blend_data.filepath)
+sceneName = os.path.splitext(baseFilePath)[0]
+
+fullFilePath = bpy.data.filepath
+epsFolder = os.path.split(fullFilePath)[0]
+epsFolder = epsFolder.replace('\\','/')
+abcFolder = epsFolder + "/abc"
+try:
+    os.mkdir(abcFolder)
+except:
+    pass
 
 # Need to make some interface and ability to enable all Collections viewport and render visibility in the scene
 # This script still need to select at least one object in the scene to run, didn't work when using bpy.ops.object.select_all(action='SELECT') before exporting Abc lines.
@@ -18,7 +27,7 @@ if bpy.data.objects.get("hana") is not None:
     hanaOb.select_set(state=True)
     bpy.context.view_layer.objects.active = hanaOb
 
-    bpy.ops.wm.alembic_export(filepath="F:/Projects/Pawitra/Dropbox/OH_2019/batch01/01_pro/03_eps/02_salawat/abc/%s_hana.abc" % sceneName, check_existing=True, selected=True, renderable_only=False, visible_layers_only=False, flatten=True, uvs=True, packuv=False, normals=True,export_hair=False, export_particles=False, init_scene_frame_range=True)
+    bpy.ops.wm.alembic_export(filepath="%s/%s_hana.abc" % (abcFolder, sceneName), check_existing=True, selected=True, renderable_only=False, visible_layers_only=False, flatten=True, uvs=True, packuv=False, normals=True,export_hair=False, export_particles=False, init_scene_frame_range=True)
 
 
 # Export Abc for Oki
@@ -32,7 +41,7 @@ if bpy.data.objects.get("oki") is not None:
     okiOb.select_set(state=True)
     bpy.context.view_layer.objects.active = okiOb
 
-    bpy.ops.wm.alembic_export(filepath="F:/Projects/Pawitra/Dropbox/OH_2019/batch01/01_pro/03_eps/02_salawat/abc/%s_oki.abc" % sceneName, check_existing=True, selected=True, renderable_only=False, visible_layers_only=False, flatten=True, uvs=True, packuv=False, normals=True,export_hair=False, export_particles=False, init_scene_frame_range=True)
+    bpy.ops.wm.alembic_export(filepath="%s/%s_oki.abc" % (abcFolder, sceneName), check_existing=True, selected=True, renderable_only=False, visible_layers_only=False, flatten=True, uvs=True, packuv=False, normals=True,export_hair=False, export_particles=False, init_scene_frame_range=True)
 
 
 # Export Abc for Omar
@@ -46,4 +55,4 @@ if bpy.data.objects.get("omar") is not None:
     omarOb.select_set(state=True)
     bpy.context.view_layer.objects.active = omarOb
 
-    bpy.ops.wm.alembic_export(filepath="F:/Projects/Pawitra/Dropbox/OH_2019/batch01/01_pro/03_eps/02_salawat/abc/%s_omar.abc" % sceneName, check_existing=True, selected=True, renderable_only=False, visible_layers_only=False, flatten=True, uvs=True, packuv=False, normals=True,export_hair=False, export_particles=False, init_scene_frame_range=True)
+    bpy.ops.wm.alembic_export(filepath="%s/%s_omar.abc" % (abcFolder, sceneName), check_existing=True, selected=True, renderable_only=False, visible_layers_only=False, flatten=True, uvs=True, packuv=False, normals=True,export_hair=False, export_particles=False, init_scene_frame_range=True)
