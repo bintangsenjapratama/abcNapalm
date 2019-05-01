@@ -16,43 +16,16 @@ except:
 # Need to make some interface and ability to enable all Collections viewport and render visibility in the scene
 # This script still need to select at least one object in the scene to run, didn't work when using bpy.ops.object.select_all(action='SELECT') before exporting Abc lines.
 
-# Export Abc for Hana
-bpy.ops.object.select_all(action='DESELECT')
-if bpy.data.objects.get("hana") is not None:
+# Export Abc for each Characters
+charList = ["hana", "oki", "omar"]
 
-    hanaOb = bpy.data.objects["hana"]
-    hanaOb.hide_select = False
-    hanaOb.hide_render = False
-    hanaOb.hide_viewport = False
-    hanaOb.select_set(state=True)
-    bpy.context.view_layer.objects.active = hanaOb
-
-    bpy.ops.wm.alembic_export(filepath="%s/%s_hana.abc" % (abcFolder, sceneName), check_existing=True, selected=True, renderable_only=False, visible_layers_only=False, flatten=True, uvs=True, packuv=False, normals=True,export_hair=False, export_particles=False, init_scene_frame_range=True)
-
-
-# Export Abc for Oki
-bpy.ops.object.select_all(action='DESELECT')
-if bpy.data.objects.get("oki") is not None:
-
-    okiOb = bpy.data.objects["oki"]
-    okiOb.hide_select = False
-    okiOb.hide_render = False
-    okiOb.hide_viewport = False
-    okiOb.select_set(state=True)
-    bpy.context.view_layer.objects.active = okiOb
-
-    bpy.ops.wm.alembic_export(filepath="%s/%s_oki.abc" % (abcFolder, sceneName), check_existing=True, selected=True, renderable_only=False, visible_layers_only=False, flatten=True, uvs=True, packuv=False, normals=True,export_hair=False, export_particles=False, init_scene_frame_range=True)
-
-
-# Export Abc for Omar
-bpy.ops.object.select_all(action='DESELECT')
-if bpy.data.objects.get("omar") is not None:
-
-    omarOb = bpy.data.objects["omar"]
-    omarOb.hide_select = False
-    omarOb.hide_render = False
-    omarOb.hide_viewport = False
-    omarOb.select_set(state=True)
-    bpy.context.view_layer.objects.active = omarOb
-
-    bpy.ops.wm.alembic_export(filepath="%s/%s_omar.abc" % (abcFolder, sceneName), check_existing=True, selected=True, renderable_only=False, visible_layers_only=False, flatten=True, uvs=True, packuv=False, normals=True,export_hair=False, export_particles=False, init_scene_frame_range=True)
+for char in charList:
+    if bpy.data.objects.get(char) is not None:
+        charOb = bpy.data.objects[char]
+        charOb.select_set(state=True)
+        bpy.context.view_layer.objects.active = charOb
+        charOb.hide_select = False
+        charOb.hide_render = False
+        charOb.hide_viewport = False
+        
+        bpy.ops.wm.alembic_export(filepath="%s/%s_%s.abc" % (abcFolder, sceneName, char), check_existing=True, selected=True, renderable_only=False, visible_layers_only=False, flatten=True, uvs=True, packuv=False, normals=True,export_hair=False, export_particles=False, init_scene_frame_range=True)
