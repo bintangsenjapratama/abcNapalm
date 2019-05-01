@@ -30,6 +30,3 @@ for char in charList:
         charOb.hide_viewport = False
         
         bpy.ops.wm.alembic_export(filepath="%s/%s_%s.abc" % (abcFolder, sceneName, char), check_existing=True, selected=True, renderable_only=False, visible_layers_only=False, flatten=True, uvs=True, packuv=False, normals=True,export_hair=False, export_particles=False, init_scene_frame_range=True)
-
-
-        #print("Yeay all of them exists in the scene")
