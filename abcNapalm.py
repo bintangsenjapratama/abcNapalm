@@ -16,7 +16,7 @@ except:
 # Need to make some interface and ability to enable all Collections viewport and render visibility in the scene
 
 # Export Abc for Each Characters
-charList = ["hana", "oki", "omar"]
+charList = ["hana", "oki", "omar", "ikan_koi_01", "ikan_koi_02", "ikan_koi_03"]
 bpy.ops.object.mode_set(mode='OBJECT')
 
 for char in charList:
