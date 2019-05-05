@@ -21,7 +21,7 @@ charList = ["hana", "oki", "omar"]
 
 for char in charList:
     if bpy.data.objects.get(char) is not None:
-        bpy.ops.object.mode_set(mode=‘OBJECT’)
+        bpy.ops.object.mode_set(mode='OBJECT')
         bpy.ops.object.select_all(action='DESELECT')
         charOb = bpy.data.objects[char]
         charOb.hide_select = False
