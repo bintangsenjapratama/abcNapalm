@@ -18,7 +18,7 @@ except:
 
 # Export Abc for Each Characters
 charList = ["hana", "oki", "omar"]
- bpy.ops.object.mode_set(mode='OBJECT')
+bpy.ops.object.mode_set(mode='OBJECT')
 
 for char in charList:
     if bpy.data.objects.get(char) is not None:
