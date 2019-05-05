@@ -14,7 +14,6 @@ except:
     pass
 
 # Need to make some interface and ability to enable all Collections viewport and render visibility in the scene
-# This script still need to select at least one object in the scene to run, didn't work when using bpy.ops.object.select_all(action='SELECT') before exporting Abc lines.
 
 # Export Abc for Each Characters
 charList = ["hana", "oki", "omar"]
