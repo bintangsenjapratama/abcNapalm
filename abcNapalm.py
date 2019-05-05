@@ -21,12 +21,14 @@ charList = ["hana", "oki", "omar"]
 
 for char in charList:
     if bpy.data.objects.get(char) is not None:
+        bpy.ops.object.mode_set(mode=‘OBJECT’)
         bpy.ops.object.select_all(action='DESELECT')
         charOb = bpy.data.objects[char]
-        charOb.select_set(state=True)
-        bpy.context.view_layer.objects.active = charOb
         charOb.hide_select = False
         charOb.hide_render = False
         charOb.hide_viewport = False
+        charOb.select_set(state=True)
+        bpy.context.view_layer.objects.active = charOb
+        
         
         bpy.ops.wm.alembic_export(filepath="%s/%s_%s.abc" % (abcFolder, sceneName, char), check_existing=True, selected=True, renderable_only=False, visible_layers_only=False, flatten=True, uvs=True, packuv=False, normals=True,export_hair=False, export_particles=False, init_scene_frame_range=True)
